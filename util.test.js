@@ -19,7 +19,7 @@ test('should create an element with text and correct class', async () => {
   });
   const page = await browser.newPage();
   await page.goto(
-    'file:///Users/mschwarzmueller/development/teaching/youtube/js-testing/index.html'
+    'file:///var/www/js-testing-introduction/index.html'
   );
   await page.click('input#name');
   await page.type('input#name', 'Anna');
@@ -29,3 +29,12 @@ test('should create an element with text and correct class', async () => {
   const finalText = await page.$eval('.user-item', el => el.textContent);
   expect(finalText).toBe('Anna (28 years old)');
 }, 10000);
+// jest.mock('./http');
+
+const { loadTitle } = require('./util');
+
+test('should print an uppercase text', () => {
+	loadTitle().then(title => {
+		expect(title).toBe('DELECTUS AUT AUTEM');
+	});
+});

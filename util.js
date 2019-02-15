@@ -35,7 +35,7 @@ exports.checkAndGenerate = (name, age) => {
 exports.generateText = generateText;
 exports.validateInput = validateInput;
 
-const { fetchData } = require('./http');
+const { fetchData, fetchUser } = require('./http');
 
 const loadTitle = () => {
 	return fetchData().then(extractedData => {
@@ -45,12 +45,22 @@ const loadTitle = () => {
 	});
 };
 
+function capitalizeFirstLetter(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const loadUserName = () => {
+	return fetchUser().then( data => {
+		return capitalizeFirstLetter(data.name);
+	} );
+};
+
 const printTitle = () => {
 	loadTitle().then(title => {
-		console.log(title);
 		return title;
 	});
 };
 
 exports.printTitle = printTitle;
 exports.loadTitle = loadTitle;
+exports.loadUserName = loadUserName;

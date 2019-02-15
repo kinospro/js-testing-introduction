@@ -31,10 +31,25 @@ test('should create an element with text and correct class', async () => {
 }, 10000);
 // jest.mock('./http');
 
-const { loadTitle } = require('./util');
+const { loadTitle, loadUserName } = require('./util');
 
 test('should print an uppercase text', () => {
 	loadTitle().then(title => {
 		expect(title).toBe('DELECTUS AUT AUTEM');
+	});
+});
+
+// Promise
+test('User fetched name should be Leanne Graham', () => {
+	return loadUserName()
+	.then(name => {
+		expect(name).toEqual('Leanne Graham');
+	});
+});
+
+// Async Await
+test('User fetched name should be Leanne Graham', async () => {
+	return await loadUserName().then(name => {
+		expect(name).toEqual('Leanne Graham');
 	});
 });

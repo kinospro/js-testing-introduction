@@ -10,3 +10,10 @@ const fetchData = () => {
 };
 
 exports.fetchData = fetchData;
+
+const fetchUser = () => axios
+		.get('https://jsonplaceholder.typicode.com/users/1')
+        .then(res => res.data)
+        .catch(err => 'error');
+
+exports.fetchUser = fetchUser;
